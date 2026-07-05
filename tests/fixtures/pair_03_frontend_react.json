@@ -1,0 +1,12 @@
+{
+  "name": "Frontend Developer - React",
+  "jd_text": "Frontend Developer — PixelCraft Studios\n\nAbout Us:\nWe build beautiful, performant web applications for creative industries.\n\nRequirements:\n- Expert-level React.js with hooks and context API\n- Strong TypeScript skills\n- Experience with state management (Redux or Zustand)\n- CSS-in-JS or Tailwind CSS for styling\n- Experience with responsive design and cross-browser compatibility\n- Familiarity with RESTful API integration\n- Unit testing with Jest and React Testing Library\n\nNice to Have:\n- Experience with Next.js for SSR/SSG\n- Knowledge of Figma-to-code workflows\n- Experience with animation libraries (Framer Motion)\n- Understanding of web accessibility (WCAG)\n\nResponsibilities:\n- Build and maintain React component libraries\n- Implement pixel-perfect designs from Figma mockups\n- Optimize web performance (Core Web Vitals)\n- Write comprehensive unit and integration tests",
+  "resume_text": "STUDENT C\nB.Tech Computer Science — PQR College | GPA: 8.9/10\n\nSkills:\n- Languages: JavaScript, Python, HTML, CSS\n- Frameworks: React, Node.js, Express\n- Tools: Git, VS Code, Figma (basic)\n- Concepts: Responsive Design, REST APIs, Agile\n\nProjects:\n1. E-Commerce Store Frontend\n   Tech: React, CSS, Axios\n   Built a product catalog with cart functionality and API integration.\n\n2. Portfolio Website\n   Tech: HTML, CSS, JavaScript\n   Personal portfolio with responsive design and animations.\n\n3. Social Media Dashboard\n   Tech: React, Chart.js, Node.js\n   Dashboard showing social media analytics with live data feeds.\n\nInternship:\n- Frontend Developer Intern at WebAgency (Jan-Mar 2025)\n  Converted Figma designs to responsive React components.\n\nAchievements:\n- Won HackFest 2024 (frontend track)\n- 50+ contributions on GitHub",
+  "expected_gap_categories": {
+    "must_have_gaps": ["TypeScript", "Redux", "Jest", "React Testing Library"],
+    "nice_to_have_gaps": ["Next.js", "Framer Motion", "WCAG"],
+    "expected_strong": ["React", "CSS", "Responsive Design", "REST APIs"]
+  },
+  "expected_evaluation_focus": ["frontend", "react", "css", "testing"],
+  "expected_question_types": ["technical", "behavioral"]
+}

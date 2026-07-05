@@ -1,0 +1,12 @@
+{
+  "name": "Data Analyst - FinTech",
+  "jd_text": "Data Analyst — FinVista Analytics\n\nAbout the Role:\nJoin our data team to drive insights from financial datasets.\n\nRequirements:\n- Proficiency in SQL for complex queries and data manipulation\n- Strong Python skills with pandas, numpy, and matplotlib\n- Experience with data visualization tools (Tableau or Power BI)\n- Statistical analysis and hypothesis testing\n- Experience with Excel and advanced spreadsheet functions\n- Understanding of ETL processes\n\nNice to Have:\n- Experience with machine learning basics (scikit-learn)\n- Knowledge of financial domain\n- Experience with Airflow or similar workflow tools\n\nResponsibilities:\n- Analyze large financial datasets to identify trends\n- Create dashboards and reports for stakeholders\n- Collaborate with engineering to improve data pipelines\n- Present findings to non-technical audiences",
+  "resume_text": "STUDENT B\nB.Tech Information Technology — XYZ University | GPA: 7.8/10\n\nSkills:\n- Languages: Python, Java, C++\n- Libraries: numpy, basic matplotlib\n- Tools: Git, Jupyter Notebook\n- Concepts: Machine Learning basics, Statistics\n\nProjects:\n1. Student Performance Predictor\n   Tech: Python, scikit-learn, pandas\n   ML model to predict student grades based on study habits.\n\n2. COVID-19 Dashboard\n   Tech: Python, matplotlib, pandas\n   Data visualization dashboard for COVID tracking.\n\nCertifications:\n- Google Data Analytics Certificate (Coursera)\n\nAchievements:\n- Published paper in college journal on data mining",
+  "expected_gap_categories": {
+    "must_have_gaps": ["Tableau", "Power BI", "ETL", "Excel"],
+    "nice_to_have_gaps": ["Airflow", "financial domain"],
+    "expected_strong": ["Python", "SQL", "Statistics", "matplotlib"]
+  },
+  "expected_evaluation_focus": ["sql", "data_analysis", "visualization", "statistics"],
+  "expected_question_types": ["technical", "behavioral"]
+}

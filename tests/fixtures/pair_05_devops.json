@@ -1,0 +1,12 @@
+{
+  "name": "DevOps Engineer - Cloud",
+  "jd_text": "DevOps Engineer — CloudNine Infrastructure\n\nAbout Us:\nCloudNine provides managed cloud infrastructure for enterprise clients.\n\nRequirements:\n- Proficiency in Linux system administration\n- Strong experience with Docker and Kubernetes\n- Infrastructure as Code with Terraform or Ansible\n- CI/CD pipeline design and implementation (Jenkins/GitHub Actions)\n- Cloud platform expertise (AWS required: EC2, ECS, Lambda, S3, RDS)\n- Monitoring and logging (Prometheus, Grafana, ELK stack)\n- Scripting skills (Bash, Python)\n\nNice to Have:\n- Experience with service mesh (Istio)\n- Knowledge of security best practices (IAM, secrets management)\n- Experience with multi-cloud deployments\n- Certifications: AWS Solutions Architect, CKA\n\nResponsibilities:\n- Design and maintain cloud infrastructure\n- Automate deployment pipelines\n- Monitor system health and respond to incidents\n- Implement security best practices",
+  "resume_text": "STUDENT E\nB.Tech Computer Science — LMN Engineering College | GPA: 7.5/10\n\nSkills:\n- Languages: Python, Bash, JavaScript\n- Tools: Docker, Git, Linux (Ubuntu)\n- Cloud: AWS (basic EC2, S3)\n- Concepts: Networking basics, Version Control\n\nProjects:\n1. Dockerized Web Application\n   Tech: Docker, Docker Compose, Nginx, Flask\n   Containerized a multi-service web application with reverse proxy.\n\n2. Automated Backup Script\n   Tech: Bash, Cron, AWS S3\n   Automated daily database backups to S3 with retention policy.\n\nCertifications:\n- AWS Cloud Practitioner\n\nAchievements:\n- Linux Club President at college\n- Open source contributor (3 merged PRs in Docker-related projects)",
+  "expected_gap_categories": {
+    "must_have_gaps": ["Kubernetes", "Terraform", "Ansible", "Jenkins", "Prometheus", "Grafana", "ELK"],
+    "nice_to_have_gaps": ["Istio", "IAM", "CKA"],
+    "expected_strong": ["Docker", "Linux", "Bash", "Python", "AWS basics"]
+  },
+  "expected_evaluation_focus": ["cloud_infrastructure", "containers", "ci_cd", "monitoring"],
+  "expected_question_types": ["technical", "behavioral"]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ML Engineer - HealthTech",
+  "jd_text": "Machine Learning Engineer — MedAI Health\n\nAbout Us:\nMedAI builds AI-powered diagnostic tools for healthcare.\n\nRequirements:\n- Strong Python skills with focus on ML frameworks (TensorFlow/PyTorch)\n- Experience with deep learning (CNNs, RNNs, Transformers)\n- Proficiency in data preprocessing and feature engineering\n- Experience with model evaluation metrics and cross-validation\n- Familiarity with MLOps tools (MLflow, Weights & Biases)\n- Strong mathematical foundation (linear algebra, probability, statistics)\n\nNice to Have:\n- Experience with medical imaging datasets (DICOM)\n- Knowledge of HIPAA compliance\n- Experience with cloud ML services (SageMaker, Vertex AI)\n- Published research in ML/AI\n\nResponsibilities:\n- Develop and deploy ML models for medical image analysis\n- Design experiments and evaluate model performance\n- Collaborate with clinicians to understand requirements\n- Maintain ML pipelines and model versioning",
+  "resume_text": "STUDENT D\nM.Tech AI/ML — IIT Dharwad | GPA: 9.1/10\n\nSkills:\n- Languages: Python, R, MATLAB\n- ML/DL: TensorFlow, Keras, scikit-learn, OpenCV\n- Tools: Jupyter, Git, Google Colab\n- Concepts: Deep Learning, Computer Vision, NLP basics\n\nProjects:\n1. Plant Disease Detection\n   Tech: Python, TensorFlow, CNN\n   Built a CNN model achieving 94% accuracy on plant leaf disease classification.\n\n2. Sentiment Analysis Engine\n   Tech: Python, BERT, Hugging Face\n   Fine-tuned BERT for product review sentiment classification.\n\n3. Object Detection System\n   Tech: Python, YOLO v5, OpenCV\n   Real-time object detection for autonomous navigation prototype.\n\nPublications:\n- 'Transfer Learning for Small Medical Datasets' — IEEE Conference 2024\n\nAchievements:\n- Kaggle Expert (Top 5% in 2 competitions)\n- Research Assistant at IIT AI Lab",
+  "expected_gap_categories": {
+    "must_have_gaps": ["PyTorch", "MLOps", "MLflow", "Weights & Biases"],
+    "nice_to_have_gaps": ["DICOM", "HIPAA", "SageMaker"],
+    "expected_strong": ["Python", "TensorFlow", "Deep Learning", "CNN"]
+  },
+  "expected_evaluation_focus": ["machine_learning", "deep_learning", "computer_vision", "statistics"],
+  "expected_question_types": ["technical", "behavioral"]
+}

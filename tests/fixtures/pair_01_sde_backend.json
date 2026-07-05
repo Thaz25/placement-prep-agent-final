@@ -1,0 +1,12 @@
+{
+  "name": "SDE Backend - E-commerce",
+  "jd_text": "Software Development Engineer - Backend\nCompany: ShopKart Technologies\n\nAbout Us:\nShopKart is a leading e-commerce platform serving millions of users.\n\nRequirements:\n- Strong proficiency in Java or Python\n- Experience with Spring Boot or Django framework\n- Solid understanding of microservices architecture\n- Expertise in SQL databases (MySQL/PostgreSQL) and NoSQL (MongoDB)\n- Experience building and consuming RESTful APIs\n- Strong foundation in data structures and algorithms\n- Experience with message queues (Kafka/RabbitMQ)\n\nNice to Have:\n- Experience with Kubernetes and Docker\n- Knowledge of AWS services (EC2, S3, Lambda)\n- Experience with CI/CD pipelines\n- Understanding of event-driven architecture\n\nResponsibilities:\n- Design and implement scalable backend services\n- Write clean, testable, and well-documented code\n- Participate in system design discussions\n- Mentor junior developers",
+  "resume_text": "STUDENT A\nB.Tech Computer Science — ABC Engineering College | GPA: 8.2/10\n\nSkills:\n- Languages: Python, JavaScript, C\n- Frameworks: Flask, React\n- Tools: Git, Docker, VS Code\n- Databases: MySQL (basic)\n- Concepts: OOP, Data Structures\n\nProjects:\n1. Task Manager Web App\n   Tech: Python, Flask, MySQL\n   Built a CRUD web application for task management with user authentication.\n\n2. Chat Application\n   Tech: JavaScript, Socket.io, Node.js\n   Real-time chat app with rooms and notifications.\n\nInternship:\n- Web Development Intern at TechStartup (Jun-Aug 2024)\n  Built responsive UI components and fixed bugs.\n\nAchievements:\n- CodeChef 3-star rated\n- College-level hackathon winner",
+  "expected_gap_categories": {
+    "must_have_gaps": ["Java", "Spring Boot", "Microservices", "MongoDB", "Kafka"],
+    "nice_to_have_gaps": ["Kubernetes", "AWS"],
+    "expected_strong": ["Python", "SQL", "Data Structures"]
+  },
+  "expected_evaluation_focus": ["system_design", "backend_api", "databases", "data_structures"],
+  "expected_question_types": ["technical", "behavioral"]
+}
