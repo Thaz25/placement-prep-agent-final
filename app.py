@@ -688,57 +688,7 @@ if st.session_state.report:
             with st.expander(f"{emoji} Q{i}: {q['question'][:80]}{'...' if len(q.get('question', '')) > 80 else ''}"):
                 st.markdown(f"**Full Question:** {q['question']}")
                 st.markdown(f"**Type:** {_severity_badge('weak' if q_type == 'technical' else 'strong')}", unsafe_allow_html=True)
-                st.markdown(f"**Probes:** {q.get('targets', 'N/A')}")
-                st.markdown(f"**Based on:** _\"{q.get('citation', 'N/A')}\"_")
-                st.markdown(f"**💡 Approach hint:** {q.get('suggested_approach', 'N/A')}")
-    # ─── Chat with Agent (Tools & Memory) ────────────────────────
-    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
-    st.markdown("### 💬 Chat with your Agent")
-    st.markdown("Ask follow-up questions about your prep kit, request more problems, or ask for your past session performance!")
-    
-    if "chat_messages" not in st.session_state:
-        # Initialize with a system message injecting the context of the prep kit
-        context_str = (
-            f"You are a helpful Placement Prep Agent. You have just generated a prep kit for the user.\n"
-            f"Role: {report['role']} at {report['company']}.\n"
-            f"Overall Match Score: {report.get('overall_score', 0)}\n"
-            f"Gaps identified: {len(report['gap_analysis'].get('gaps', []))} gaps.\n"
-            f"You have access to tools to search for extra coding problems and to look up past session performance.\n"
-        )
-        st.session_state.chat_messages = [
-            {"role": "system", "content": context_str},
-            {"role": "assistant", "content": "Hi! I'm here to help. Would you like me to find some extra practice problems, or compare your performance against a past session?"}
-        ]
-        
-    # Display chat history (skipping the system message)
-    for msg in st.session_state.chat_messages:
-        if msg["role"] == "system":
-            continue
-        # Only show user and assistant messages in UI, not raw tool calls/results
-        if msg["role"] in ["user", "assistant"] and msg.get("content"):
-            with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
-                
-    # Chat input
-    if prompt := st.chat_input("Ask a follow-up question..."):
-        # Display user message
-        st.session_state.chat_messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.markdown(prompt)
-            
-        # Get AI response using Tools
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
-                try:
-                    response_content = chat_with_tools(
-                        messages=st.session_state.chat_messages,
-                        tools_schema=TOOLS_SCHEMA,
-                        tools_map=TOOLS_MAP
-                    )
-                    st.markdown(response_content)
-                    st.session_state.chat_messages.append({"role": "assistant", "content": response_content})
-                except Exception as e:
-                    st.error(f"Error communicating with Agent: {e}")
+
 
 else:
     # ─── Landing Page ─────────────────────────────────────────────
