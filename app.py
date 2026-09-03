@@ -23,7 +23,7 @@ from src.pipeline.interview_questions import generate_interview_questions
 from src.pipeline.compile_report import compile_report
 from src.memory.session_store import SessionStore
 from src.llm_client import chat_with_tools
-from src.tools import TOOLS_SCHEMA, TOOLS_MAP
+from src.agent_tools import TOOLS_SCHEMA, TOOLS_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
