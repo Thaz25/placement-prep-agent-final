@@ -22,6 +22,8 @@ from src.pipeline.practice_set import generate_practice_set
 from src.pipeline.interview_questions import generate_interview_questions
 from src.pipeline.compile_report import compile_report
 from src.memory.session_store import SessionStore
+from src.llm_client import chat_with_tools
+from src.tools import TOOLS_SCHEMA, TOOLS_MAP
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -58,7 +60,8 @@ st.markdown("""
     }
 
     .sub-header {
-        color: #94a3b8;
+        color: var(--text-color);
+        opacity: 0.7;
         font-size: 1.1rem;
         font-weight: 300;
         margin-top: -10px;
@@ -67,8 +70,8 @@ st.markdown("""
 
     /* Cards */
     .metric-card {
-        background: linear-gradient(145deg, #1e1e3a 0%, #16213e 100%);
-        border: 1px solid #2d2d5e;
+        background: var(--secondary-background-color);
+        border: 1px solid rgba(128, 128, 128, 0.2);
         border-radius: 12px;
         padding: 1.2rem;
         margin: 0.5rem 0;
@@ -140,7 +143,7 @@ st.markdown("""
 
     /* Guardrail warning */
     .guardrail-warning {
-        background: linear-gradient(145deg, #451a1a, #2d1a1a);
+        background: rgba(239, 68, 68, 0.1);
         border: 1px solid #ef4444;
         border-radius: 12px;
         padding: 1rem;
@@ -160,7 +163,8 @@ st.markdown("""
     }
 
     .score-label {
-        color: #94a3b8;
+        color: var(--text-color);
+        opacity: 0.7;
         font-size: 0.85rem;
         margin-top: 0.3rem;
     }
@@ -508,8 +512,8 @@ if st.session_state.report:
                 st.markdown(
                     f'<div class="metric-card">'
                     f'<strong>{skill["skill"]}</strong><br>'
-                    f'<em style="color:#94a3b8;">"{skill["jd_citation"]}"</em><br>'
-                    f'<small style="color:#64748b;">Line {skill.get("line_number", "?")}</small>'
+                    f'<em style="color:var(--text-color);opacity:0.7;">"{skill["jd_citation"]}"</em><br>'
+                    f'<small style="color:var(--text-color);opacity:0.6;">Line {skill.get("line_number", "?")}</small>'
                     f'</div>',
                     unsafe_allow_html=True,
                 )
@@ -520,8 +524,8 @@ if st.session_state.report:
                 st.markdown(
                     f'<div class="metric-card">'
                     f'<strong>{skill["skill"]}</strong><br>'
-                    f'<em style="color:#94a3b8;">"{skill["jd_citation"]}"</em><br>'
-                    f'<small style="color:#64748b;">Line {skill.get("line_number", "?")}</small>'
+                    f'<em style="color:var(--text-color);opacity:0.7;">"{skill["jd_citation"]}"</em><br>'
+                    f'<small style="color:var(--text-color);opacity:0.6;">Line {skill.get("line_number", "?")}</small>'
                     f'</div>',
                     unsafe_allow_html=True,
                 )
@@ -571,7 +575,7 @@ if st.session_state.report:
             st.markdown(
                 f'<div class="metric-card" style="text-align:center;">'
                 f'<span class="badge-missing" style="font-size:1.5rem;padding:8px 16px;">{missing_count}</span><br>'
-                f'<small style="color:#94a3b8;margin-top:8px;display:block;">Missing</small>'
+                f'<small style="color:var(--text-color);opacity:0.7;margin-top:8px;display:block;">Missing</small>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
@@ -579,7 +583,7 @@ if st.session_state.report:
             st.markdown(
                 f'<div class="metric-card" style="text-align:center;">'
                 f'<span class="badge-weak" style="font-size:1.5rem;padding:8px 16px;">{weak_count}</span><br>'
-                f'<small style="color:#94a3b8;margin-top:8px;display:block;">Weak</small>'
+                f'<small style="color:var(--text-color);opacity:0.7;margin-top:8px;display:block;">Weak</small>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
@@ -587,7 +591,7 @@ if st.session_state.report:
             st.markdown(
                 f'<div class="metric-card" style="text-align:center;">'
                 f'<span class="badge-strong" style="font-size:1.5rem;padding:8px 16px;">{strong_count}</span><br>'
-                f'<small style="color:#94a3b8;margin-top:8px;display:block;">Strong</small>'
+                f'<small style="color:var(--text-color);opacity:0.7;margin-top:8px;display:block;">Strong</small>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
@@ -628,7 +632,7 @@ if st.session_state.report:
                 f'<div class="metric-card">'
                 f'{icon} <strong>{topic["topic"].replace("_", " ").title()}</strong> '
                 f'({_severity_badge("missing" if priority == "high" else "weak")})<br>'
-                f'<em style="color:#94a3b8;">{topic.get("reasoning", "")}</em>'
+                f'<em style="color:var(--text-color);opacity:0.7;">{topic.get("reasoning", "")}</em>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
@@ -650,8 +654,8 @@ if st.session_state.report:
                     f'<strong>#{i}.</strong> '
                     f'<a href="{url}" target="_blank" style="color:#6366f1;text-decoration:none;">{title}</a> '
                     f'<span style="color:{diff_color};font-weight:600;margin-left:8px;">[{diff}]</span><br>'
-                    f'<small style="color:#64748b;">Topics: {", ".join(prob.get("topics", []))}</small><br>'
-                    f'<em style="color:#94a3b8;font-size:0.85rem;">💡 {prob.get("reason_selected", "")}</em>'
+                    f'<small style="color:var(--text-color);opacity:0.6;">Topics: {", ".join(prob.get("topics", []))}</small><br>'
+                    f'<em style="color:var(--text-color);opacity:0.7;font-size:0.85rem;">💡 {prob.get("reason_selected", "")}</em>'
                     f'</div>',
                     unsafe_allow_html=True,
                 )
@@ -687,6 +691,54 @@ if st.session_state.report:
                 st.markdown(f"**Probes:** {q.get('targets', 'N/A')}")
                 st.markdown(f"**Based on:** _\"{q.get('citation', 'N/A')}\"_")
                 st.markdown(f"**💡 Approach hint:** {q.get('suggested_approach', 'N/A')}")
+    # ─── Chat with Agent (Tools & Memory) ────────────────────────
+    st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
+    st.markdown("### 💬 Chat with your Agent")
+    st.markdown("Ask follow-up questions about your prep kit, request more problems, or ask for your past session performance!")
+    
+    if "chat_messages" not in st.session_state:
+        # Initialize with a system message injecting the context of the prep kit
+        context_str = (
+            f"You are a helpful Placement Prep Agent. You have just generated a prep kit for the user.\n"
+            f"Role: {report['role']} at {report['company']}.\n"
+            f"Overall Match Score: {report.get('overall_score', 0)}\n"
+            f"Gaps identified: {len(report['gap_analysis'].get('gaps', []))} gaps.\n"
+            f"You have access to tools to search for extra coding problems and to look up past session performance.\n"
+        )
+        st.session_state.chat_messages = [
+            {"role": "system", "content": context_str},
+            {"role": "assistant", "content": "Hi! I'm here to help. Would you like me to find some extra practice problems, or compare your performance against a past session?"}
+        ]
+        
+    # Display chat history (skipping the system message)
+    for msg in st.session_state.chat_messages:
+        if msg["role"] == "system":
+            continue
+        # Only show user and assistant messages in UI, not raw tool calls/results
+        if msg["role"] in ["user", "assistant"] and msg.get("content"):
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+                
+    # Chat input
+    if prompt := st.chat_input("Ask a follow-up question..."):
+        # Display user message
+        st.session_state.chat_messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+            
+        # Get AI response using Tools
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                try:
+                    response_content = chat_with_tools(
+                        messages=st.session_state.chat_messages,
+                        tools_schema=TOOLS_SCHEMA,
+                        tools_map=TOOLS_MAP
+                    )
+                    st.markdown(response_content)
+                    st.session_state.chat_messages.append({"role": "assistant", "content": response_content})
+                except Exception as e:
+                    st.error(f"Error communicating with Agent: {e}")
 
 else:
     # ─── Landing Page ─────────────────────────────────────────────
@@ -707,8 +759,8 @@ else:
             st.markdown(
                 f'<div class="metric-card" style="text-align:center;min-height:160px;">'
                 f'<div style="font-size:2.5rem;margin-bottom:8px;">{icon}</div>'
-                f'<strong style="color:#e2e8f0;">{title}</strong><br>'
-                f'<small style="color:#94a3b8;">{desc}</small>'
+                f'<strong style="color:var(--text-color);">{title}</strong><br>'
+                f'<small style="color:var(--text-color);opacity:0.7;">{desc}</small>'
                 f'</div>',
                 unsafe_allow_html=True,
             )

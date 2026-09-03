@@ -309,3 +309,73 @@ def call_llm(
     raise RuntimeError(
         f"LLM call failed after {config.LLM_MAX_RETRIES} attempts for step '{step_name}': {last_error}"
     )
+
+
+def chat_with_tools(messages: list, tools_schema: list, tools_map: dict, max_steps: int = 5) -> str:
+    """
+    Handle a multi-turn chat conversation that can invoke tools.
+    
+    Args:
+        messages: List of message dicts (e.g., [{"role": "user", "content": "..."}]).
+        tools_schema: List of OpenAI-format tool schemas.
+        tools_map: Dict mapping tool names to actual python callables.
+        max_steps: Maximum number of tool iterations before returning.
+        
+    Returns:
+        The final string response from the LLM.
+    """
+    client = _get_client()
+    
+    # We copy the messages so we can append to them without mutating the original list
+    conversation = messages.copy()
+    
+    for step in range(max_steps):
+        kwargs = {
+            "model": config.MODEL_NAME,
+            "messages": conversation,
+            "temperature": 0.5, # Slightly higher for chat
+            "tools": tools_schema,
+            "tool_choice": "auto"
+        }
+        
+        response = client.chat.completions.create(**kwargs)
+        message = response.choices[0].message
+        
+        # Append the assistant's message to the conversation
+        # Note: the message object needs to be converted to dict or appended directly
+        conversation.append(message)
+        
+        if not message.tool_calls:
+            # No more tools called, we have our final answer
+            return message.content or ""
+            
+        # Execute tools
+        for tool_call in message.tool_calls:
+            function_name = tool_call.function.name
+            
+            try:
+                args = json.loads(tool_call.function.arguments)
+            except json.JSONDecodeError:
+                args = {}
+                
+            logger.info(f"[LLM Tools] Agent invoked tool '{function_name}' with args: {args}")
+            
+            if function_name in tools_map:
+                try:
+                    tool_result = tools_map[function_name](**args)
+                except Exception as e:
+                    logger.error(f"[LLM Tools] Tool '{function_name}' failed: {e}")
+                    tool_result = f"Error executing tool: {e}"
+            else:
+                tool_result = f"Error: Tool '{function_name}' not found."
+                
+            # Append the tool response
+            conversation.append({
+                "tool_call_id": tool_call.id,
+                "role": "tool",
+                "name": function_name,
+                "content": str(tool_result)
+            })
+            
+    # If we hit max steps, just return the last message content
+    return "I'm sorry, I needed too many steps to figure this out."
